@@ -12,12 +12,14 @@ attemptDisplay.textContent = `${attempt}/${maxAttempt}`;
 guessBtn.style.display = "none";
 restartBtn.style.display = "block";
 
+
 restartBtn.onclick = function(){
     target = Math.floor(Math.random() * 20) + 1;
     attempt = 0;
     attemptDisplay.textContent = `${attempt}/${maxAttempt}`;;
     result.textContent = "";
     guessInput.value = "";
+    guessBtn.focus()
     restartBtn.style.display = "none";
     guessBtn.style.display = "block";
     console.log(target);
@@ -36,12 +38,12 @@ guessBtn.onclick = function(){
         }
         
         else if(value > target){
-            result.textContent = value+" is Wrong!!! Guess Lower";
+            result.textContent = value+" is too High!!! Guess Lower";
             attempt++;
             attemptDisplay.textContent = `${attempt}/${maxAttempt}`;
         }
         else if(value < target){
-            result.textContent = value + " is Wrong!!! Guess Higher";
+            result.textContent = value + " is too Low!!! Guess Higher";
             attempt++;
             attemptDisplay.textContent = `${attempt}/${maxAttempt}`;
         }
@@ -50,6 +52,7 @@ guessBtn.onclick = function(){
             attemptDisplay.textContent = `${attempt}/${maxAttempt}`;
             result.textContent = "You Win!!! You guess it right!!";
             guessBtn.style.display = "none";
+            guessBtn.focus()
             restartBtn.style.display = "block";
             guessInput.value = "";
             return;
@@ -57,10 +60,12 @@ guessBtn.onclick = function(){
     } 
  
     if(attempt == maxAttempt){
+        attemptDisplay.textContent = `${attempt}/${maxAttempt}`;
         result.textContent = "You LOSE";
         guessBtn.style.display = "none";
         restartBtn.style.display = "block";
  
     }
     guessInput.value = "";
+    guessBtn.focus()
 };
